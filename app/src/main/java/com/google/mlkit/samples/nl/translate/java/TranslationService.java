@@ -62,7 +62,7 @@ public class TranslationService extends SmartGlassesAndroidService {
 
     @Subscribe
     public void onTranslateSuccess(TranslateSuccessEvent event){
-        Log.d(TAG, "Success! SHITFUCK");
+        Log.d(TAG, "Success! SUCCESS");
         if(sgmLib == null) return;
 
         if(newScreen) {
