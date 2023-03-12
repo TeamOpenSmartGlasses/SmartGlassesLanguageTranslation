@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/drawable_ic_baseline_delete_24.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/drawable/ic_baseline_delete_24.xml"
+    },
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/drawable_ic_baseline_translate_32.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/drawable/ic_baseline_translate_32.xml"
+    },
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/drawable_ic_file_download_white_24dp.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/drawable/ic_file_download_white_24dp.xml"
+    },
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/drawable_logo_mlkit.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/drawable/logo_mlkit.xml"
+    },
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/drawable_ic_compare_arrows_black_24dp.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/drawable/ic_compare_arrows_black_24dp.xml"
+    },
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/layout_activity_translate_main.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/layout/activity_translate_main.xml"
+    },
+    {
+        "merged": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/build/intermediates/res/merged/debug/layout_translate_fragment.xml.flat",
+        "source": "/home/alex/Documents/OSSG/thirdpartyapps/translate/app/src/main/res/layout/translate_fragment.xml"
+    }
+]

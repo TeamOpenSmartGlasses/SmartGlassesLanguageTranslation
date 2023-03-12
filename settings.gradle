@@ -1,0 +1,8 @@
+rootProject.name = 'mlkit_translate_sample'
+
+include ':app'
+//include ':internal:chooserx'
+//project(':internal:chooserx').projectDir = file('../internal/chooserx')
+
+include ':SGMLib'
+project(':SGMLib').projectDir = new File(rootProject.projectDir, '../../SmartGlassesManager/SGM_android_library/SGMLib')

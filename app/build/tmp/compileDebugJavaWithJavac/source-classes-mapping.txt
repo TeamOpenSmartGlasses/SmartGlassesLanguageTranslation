@@ -1,0 +1,37 @@
+com/google/mlkit/samples/nl/translate/java/events/TranslateSuccessEvent.java
+ com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent
+com/google/mlkit/samples/nl/translate/BuildConfig.java
+ com.google.mlkit.samples.nl.translate.BuildConfig
+com/google/mlkit/samples/nl/translate/java/TranslateFragment.java
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$1
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$2
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$3
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$4
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$5
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$6
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$7
+ com.google.mlkit.samples.nl.translate.java.TranslateFragment$8
+com/google/mlkit/samples/nl/translate/java/events/RequestTranslateMessageEvent.java
+ com.google.mlkit.samples.nl.translate.java.events.RequestTranslateMessageEvent
+com/google/mlkit/samples/nl/translate/java/events/TranscriptReceivedEvent.java
+ com.google.mlkit.samples.nl.translate.java.events.TranscriptReceivedEvent
+com/google/mlkit/samples/nl/translate/java/Globals.java
+ com.google.mlkit.samples.nl.translate.java.Globals
+com/google/mlkit/samples/nl/translate/java/TranslateViewModel.java
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$1
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$2
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$3
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$4
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$5
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$6
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$7
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$8
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$Language
+ com.google.mlkit.samples.nl.translate.java.TranslateViewModel$ResultOrError
+com/google/mlkit/samples/nl/translate/java/TranslationService.java
+ com.google.mlkit.samples.nl.translate.java.TranslationService
+com/google/mlkit/samples/nl/translate/java/MainActivity.java
+ com.google.mlkit.samples.nl.translate.java.MainActivity
+ com.google.mlkit.samples.nl.translate.java.MainActivity$1
