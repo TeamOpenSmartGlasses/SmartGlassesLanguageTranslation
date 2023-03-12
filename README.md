@@ -1,3 +1,7 @@
+# SGM Translate Example App
+
+This is a translation app that works in conjunction with the Smart Glasses Manager.
+
 # ML Kit Translation Quickstart
 
 * [Read more about ML Kit Translation](https://developers.google.com/ml-kit/language/translation)
