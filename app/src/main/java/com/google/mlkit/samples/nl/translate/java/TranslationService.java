@@ -47,11 +47,17 @@ public class TranslationService extends SmartGlassesAndroidService {
         Log.d(TAG, "TRANSLATION SERVICE STARTED");
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
     public void processTranscriptionCallback(String transcript, long timestamp, boolean isFinal){
         Log.d(TAG, "PROCESS TRANSCRIPTION CALLBACK. IS IT FINAL? " + isFinal + " " + transcript);
         if(isFinal) translateText(transcript);
     }
-    public void translateCommandCallback(){
+    public void translateCommandCallback(String args, long commandTriggeredTime){
         Log.d("TAG","Translation callback called");
         translateText("Translate this text!");
     }
