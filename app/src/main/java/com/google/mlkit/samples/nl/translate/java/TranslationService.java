@@ -37,7 +37,7 @@ public class TranslationService extends SmartGlassesAndroidService {
     @Override
     public void onCreate() {
         super.onCreate();
-        sgmLib = new SGMLib(getApplicationContext());
+        sgmLib = new SGMLib(getBaseContext());
 
         SGMCommand command = new SGMCommand("Translate", UUID.randomUUID(), new String[]{"Translate"}, "A Translation App");
         sgmLib.registerCommand(command, this::translateCommandCallback);

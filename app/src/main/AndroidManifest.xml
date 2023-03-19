@@ -20,7 +20,8 @@
           <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-      <service android:name=".java.TranslationService"></service>
+      <service android:name=".java.TranslationService"
+          android:exported="true"/>
 
   </application>
 
