@@ -47,23 +47,27 @@ import java.util.List;
 /***
  * Fragment view for handling translations
  */
+
+
 public class TranslateFragment extends Fragment {
     TranslateViewModel viewModel;
     SGMLib sgmLib;
-  public static TranslateFragment newInstance() {
-    return new TranslateFragment();
-  }
 
-  public TranslateFragment(){
-      sgmLib = Globals.sgmLib;
-  }
+    public static TranslateFragment newInstance() {
+        return new TranslateFragment();
+    }
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setHasOptionsMenu(false);
-  }
+    public TranslateFragment() {
+        sgmLib = Globals.sgmLib;
+    }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+    }
+}
+/*
   @Nullable
   @Override
   public View onCreateView(
@@ -227,3 +231,5 @@ public class TranslateFragment extends Fragment {
 
 
 }
+*/
+

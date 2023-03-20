@@ -1,12 +1,9 @@
 package com.google.mlkit.samples.nl.translate.java;
 
-import static com.google.mlkit.samples.nl.translate.java.Globals.sgmLib;
-
 import android.util.Log;
 
 import com.google.mlkit.samples.nl.translate.R;
 import com.google.mlkit.samples.nl.translate.java.events.RequestTranslateMessageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.TranscriptReceivedEvent;
 import com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent;
 import com.teamopensmartglasses.sgmlib.DataStreamType;
 import com.teamopensmartglasses.sgmlib.SGMCommand;
@@ -25,7 +22,7 @@ public class TranslationService extends SmartGlassesAndroidService {
     public SGMLib sgmLib;
     public boolean newScreen = true;
     public String previousTranslation = "";
-
+    SimplifiedTranslateViewModel viewModel;
     public TranslationService(){
         super(MainActivity.class,
                 "translation_app",
@@ -41,14 +38,27 @@ public class TranslationService extends SmartGlassesAndroidService {
         //Create SGMLib instance with context: this
         sgmLib = new SGMLib(this);
 
+        //Define command with a UUID
         UUID commandUUID = UUID.fromString("5b824bb6-d3b3-417d-8c74-3b103efb403f");
         SGMCommand command = new SGMCommand("Translate", commandUUID, new String[]{"Translate"}, "A Translation App");
+
+        //Register the command
         sgmLib.registerCommand(command, this::translateCommandCallback);
+
+        //Subscribe to transcription stream
         sgmLib.subscribe(DataStreamType.TRANSCRIPTION_STREAM, this::processTranscriptionCallback);
-        EventBus.getDefault().register(this);
 
         Log.d(TAG, "TRANSLATION SERVICE STARTED");
-        sgmLib.sendReferenceCard("TEST", "Translation Service started");
+        sgmLib.sendReferenceCard("Success", "Translation Service started");
+
+        initializeTranslationStuff();
+    }
+
+    public void initializeTranslationStuff(){
+        EventBus.getDefault().register(this);
+        viewModel = new SimplifiedTranslateViewModel();
+        viewModel.sourceLang.setValue(new SimplifiedTranslateViewModel.Language("en"));
+        viewModel.targetLang.setValue(new SimplifiedTranslateViewModel.Language("es"));
     }
 
     @Override
@@ -67,7 +77,8 @@ public class TranslationService extends SmartGlassesAndroidService {
     }
 
     public void translateText(String text){
-        EventBus.getDefault().post(new RequestTranslateMessageEvent(text));
+        viewModel.sourceText.setValue(text);
+        viewModel.translate();
     }
 
     @Subscribe

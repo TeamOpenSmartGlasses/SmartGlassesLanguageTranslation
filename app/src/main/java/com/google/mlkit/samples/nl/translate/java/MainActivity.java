@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_translate_main);
 
+    /*
     frag = TranslateFragment.newInstance();
     if (savedInstanceState == null) {
       getSupportFragmentManager()
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
           .replace(R.id.container, frag)
           .commitNow();
     }
+     */
 
     mBound = false;
     startTranslationService();
