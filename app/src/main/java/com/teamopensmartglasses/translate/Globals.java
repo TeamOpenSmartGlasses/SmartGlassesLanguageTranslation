@@ -1,4 +1,4 @@
-package com.google.mlkit.samples.nl.translate.java;
+package com.teamopensmartglasses.translate;
 
 import com.teamopensmartglasses.sgmlib.SGMLib;
 

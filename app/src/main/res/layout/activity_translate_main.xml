@@ -20,5 +20,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.google.mlkit.samples.nl.translate.java.MainActivity" />
+    tools:context="com.google.mlkit.samples.nl.translate.com.teamopensmartglasses.mlkit.samples.nl.translate.java.MainActivity" />
 

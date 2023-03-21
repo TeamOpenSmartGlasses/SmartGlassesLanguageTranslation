@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.google.mlkit.samples.nl.translate.java;
+package com.teamopensmartglasses.translate;
 
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -30,8 +30,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.google.mlkit.samples.nl.translate.R;
-import com.google.mlkit.samples.nl.translate.java.UI.TranslateFragment;
-import com.google.mlkit.samples.nl.translate.java.events.KillServiceEvent;
+import com.teamopensmartglasses.translate.UI.TranslateFragment;
+import com.teamopensmartglasses.translate.events.KillServiceEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

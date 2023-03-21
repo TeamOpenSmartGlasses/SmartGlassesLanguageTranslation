@@ -1,6 +1,4 @@
-package com.google.mlkit.samples.nl.translate.java.events;
-
-import com.google.mlkit.samples.nl.translate.java.TranslationBackend;
+package com.teamopensmartglasses.translate.events;
 
 public class ChangeTargetLanguageEvent {
     public final String languageCode;

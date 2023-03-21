@@ -1,4 +1,4 @@
-package com.google.mlkit.samples.nl.translate.java.events;
+package com.teamopensmartglasses.translate.events;
 
 public class NeedDownloadLanguageEvent {
     public final String languageCode;

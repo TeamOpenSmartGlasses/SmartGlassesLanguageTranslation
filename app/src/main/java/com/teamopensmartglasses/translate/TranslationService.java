@@ -1,12 +1,12 @@
-package com.google.mlkit.samples.nl.translate.java;
+package com.teamopensmartglasses.translate;
 
 import android.util.Log;
 
 import com.google.mlkit.samples.nl.translate.R;
-import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.ChangeTargetLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.NeedDownloadLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent;
+import com.teamopensmartglasses.translate.events.ChangeSourceLanguageEvent;
+import com.teamopensmartglasses.translate.events.ChangeTargetLanguageEvent;
+import com.teamopensmartglasses.translate.events.NeedDownloadLanguageEvent;
+import com.teamopensmartglasses.translate.events.TranslateSuccessEvent;
 import com.teamopensmartglasses.sgmlib.DataStreamType;
 import com.teamopensmartglasses.sgmlib.SGMCommand;
 import com.teamopensmartglasses.sgmlib.SGMLib;

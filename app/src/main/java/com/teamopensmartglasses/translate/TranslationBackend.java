@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.google.mlkit.samples.nl.translate.java;
+package com.teamopensmartglasses.translate;
 
 import android.util.Log;
 import android.util.LruCache;
@@ -37,10 +37,8 @@ import com.google.mlkit.nl.translate.TranslateRemoteModel;
 import com.google.mlkit.nl.translate.Translation;
 import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
-import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.NeedDownloadLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.RequestTranslateMessageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent;
+import com.teamopensmartglasses.translate.events.RequestTranslateMessageEvent;
+import com.teamopensmartglasses.translate.events.TranslateSuccessEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

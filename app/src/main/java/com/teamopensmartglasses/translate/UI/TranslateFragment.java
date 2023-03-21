@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.google.mlkit.samples.nl.translate.java.UI;
+package com.teamopensmartglasses.translate.UI;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -36,10 +36,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.mlkit.samples.nl.translate.R;
-import com.google.mlkit.samples.nl.translate.java.Globals;
-import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.ChangeTargetLanguageEvent;
-import com.google.mlkit.samples.nl.translate.java.events.KillServiceEvent;
+import com.teamopensmartglasses.translate.Globals;
+import com.teamopensmartglasses.translate.events.ChangeSourceLanguageEvent;
+import com.teamopensmartglasses.translate.events.ChangeTargetLanguageEvent;
+import com.teamopensmartglasses.translate.events.KillServiceEvent;
 import com.teamopensmartglasses.sgmlib.SGMLib;
 
 import org.greenrobot.eventbus.EventBus;
