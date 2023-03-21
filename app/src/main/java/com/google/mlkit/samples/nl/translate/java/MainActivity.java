@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.google.mlkit.samples.nl.translate.R;
+import com.google.mlkit.samples.nl.translate.java.UI.TranslateFragment;
 
 public class MainActivity extends AppCompatActivity {
   private String TAG = "TranslateApp_MainActivity";
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_translate_main);
 
-    /*
     frag = TranslateFragment.newInstance();
     if (savedInstanceState == null) {
       getSupportFragmentManager()
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
           .replace(R.id.container, frag)
           .commitNow();
     }
-     */
 
     mBound = false;
     startTranslationService();

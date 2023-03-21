@@ -37,6 +37,8 @@ import com.google.mlkit.nl.translate.TranslateRemoteModel;
 import com.google.mlkit.nl.translate.Translation;
 import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
+import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
+import com.google.mlkit.samples.nl.translate.java.events.NeedDownloadLanguageEvent;
 import com.google.mlkit.samples.nl.translate.java.events.RequestTranslateMessageEvent;
 import com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent;
 
@@ -53,7 +55,7 @@ import java.util.Set;
 /**
  * Model class for tracking available models and performing live translations
  */
-public class SimplifiedTranslateViewModel {
+public class TranslationBackend {
   // This specifies the number of translators instance we want to keep in our LRU cache.
   // Each instance of the translator is built with different options based on the source
   // language and the target language, and since we want to be able to manage the number of
@@ -84,7 +86,7 @@ public class SimplifiedTranslateViewModel {
 
   final OnCompleteListener<String> processTranslation;
 
-  public SimplifiedTranslateViewModel() {
+  public TranslationBackend() {
     //super(application);
     modelManager = RemoteModelManager.getInstance();
     EventBus.getDefault().register(this);
@@ -287,7 +289,7 @@ public class SimplifiedTranslateViewModel {
    * Holds the language code (i.e. "en") and the corresponding localized full language name (i.e.
    * "English")
    */
-  static class Language implements Comparable<Language> {
+  public static class Language implements Comparable<Language> {
     private final String code;
 
     Language(String code) {

@@ -14,13 +14,12 @@
  *  limitations under the License.
  */
 
-package com.google.mlkit.samples.nl.translate.java;
+package com.google.mlkit.samples.nl.translate.java.UI;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +34,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import com.google.android.material.textfield.TextInputEditText;
+
 import com.google.mlkit.samples.nl.translate.R;
-import com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent;
+import com.google.mlkit.samples.nl.translate.java.Globals;
+import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
+import com.google.mlkit.samples.nl.translate.java.events.ChangeTargetLanguageEvent;
 import com.teamopensmartglasses.sgmlib.SGMLib;
 
 import org.greenrobot.eventbus.EventBus;
@@ -66,8 +67,7 @@ public class TranslateFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(false);
     }
-}
-/*
+
   @Nullable
   @Override
   public View onCreateView(
@@ -81,14 +81,14 @@ public class TranslateFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    final Button switchButton = view.findViewById(R.id.buttonSwitchLang);
+    final Button switchButton = view.findViewById(R.id.buttonSwitchLang); //good
     final ToggleButton sourceSyncButton = view.findViewById(R.id.buttonSyncSource);
     final ToggleButton targetSyncButton = view.findViewById(R.id.buttonSyncTarget);
-    final TextInputEditText srcTextView = view.findViewById(R.id.sourceText);
-    final TextView targetTextView = view.findViewById(R.id.targetText);
-    final TextView downloadedModelsTextView = view.findViewById(R.id.downloadedModels);
-    final Spinner sourceLangSelector = view.findViewById(R.id.sourceLangSelector);
-    final Spinner targetLangSelector = view.findViewById(R.id.targetLangSelector);
+    //final TextInputEditText srcTextView = view.findViewById(R.id.sourceText);
+    //final TextView targetTextView = view.findViewById(R.id.targetText);
+    final TextView downloadedModelsTextView = view.findViewById(R.id.downloadedModels); //good
+    final Spinner sourceLangSelector = view.findViewById(R.id.sourceLangSelector); //good
+    final Spinner targetLangSelector = view.findViewById(R.id.targetLangSelector); //good
 
     viewModel = ViewModelProviders.of(this).get(TranslateViewModel.class);
 
@@ -107,42 +107,34 @@ public class TranslateFragment extends Fragment {
         new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            setProgressText(targetTextView);
-            viewModel.sourceLang.setValue(adapter.getItem(position));
+            //viewModel.sourceLang.setValue(adapter.getItem(position));
+            //TODO: Set source language
+              EventBus.getDefault().post(new ChangeSourceLanguageEvent(adapter.getItem(position).getCode()));
           }
 
           @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-            targetTextView.setText("");
-          }
+          public void onNothingSelected(AdapterView<?> parent) {}
         });
     targetLangSelector.setOnItemSelectedListener(
         new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            setProgressText(targetTextView);
-            viewModel.targetLang.setValue(adapter.getItem(position));
+            //viewModel.targetLang.setValue(adapter.getItem(position));
+              // TODO: set target language
+              EventBus.getDefault().post(new ChangeTargetLanguageEvent(adapter.getItem(position).getCode()));
           }
 
           @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-            targetTextView.setText("");
-          }
+          public void onNothingSelected(AdapterView<?> parent) {}
         });
 
     switchButton.setOnClickListener(
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            String targetText = targetTextView.getText().toString();
-            setProgressText(targetTextView);
             int sourceLangPosition = sourceLangSelector.getSelectedItemPosition();
             sourceLangSelector.setSelection(targetLangSelector.getSelectedItemPosition());
             targetLangSelector.setSelection(sourceLangPosition);
-
-            // Also update srcTextView with targetText
-            srcTextView.setText(targetText);
-            viewModel.sourceText.setValue(targetText);
           }
         });
 
@@ -170,35 +162,6 @@ public class TranslateFragment extends Fragment {
               viewModel.downloadLanguage(language);
             } else {
               viewModel.deleteLanguage(language);
-            }
-          }
-        });
-
-    // Translate input text as it is typed
-    srcTextView.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-          @Override
-          public void afterTextChanged(Editable s) {
-            setProgressText(targetTextView);
-            viewModel.sourceText.postValue(s.toString());
-          }
-        });
-    viewModel.translatedText.observe(
-        getViewLifecycleOwner(),
-        new Observer<TranslateViewModel.ResultOrError>() {
-          @Override
-          public void onChanged(TranslateViewModel.ResultOrError resultOrError) {
-            if (resultOrError.error != null) {
-              srcTextView.setError(resultOrError.error.getLocalizedMessage());
-            } else {
-              targetTextView.setText(resultOrError.result);
-              //EventBus.getDefault().post(new TranslateSuccessEvent(resultOrError.result));
             }
           }
         });
@@ -231,5 +194,5 @@ public class TranslateFragment extends Fragment {
 
 
 }
-*/
+
 

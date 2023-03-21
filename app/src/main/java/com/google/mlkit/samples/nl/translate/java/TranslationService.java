@@ -3,7 +3,9 @@ package com.google.mlkit.samples.nl.translate.java;
 import android.util.Log;
 
 import com.google.mlkit.samples.nl.translate.R;
-import com.google.mlkit.samples.nl.translate.java.events.RequestTranslateMessageEvent;
+import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
+import com.google.mlkit.samples.nl.translate.java.events.ChangeTargetLanguageEvent;
+import com.google.mlkit.samples.nl.translate.java.events.NeedDownloadLanguageEvent;
 import com.google.mlkit.samples.nl.translate.java.events.TranslateSuccessEvent;
 import com.teamopensmartglasses.sgmlib.DataStreamType;
 import com.teamopensmartglasses.sgmlib.SGMCommand;
@@ -22,7 +24,7 @@ public class TranslationService extends SmartGlassesAndroidService {
     public SGMLib sgmLib;
     public boolean newScreen = true;
     public String previousTranslation = "";
-    SimplifiedTranslateViewModel viewModel;
+    TranslationBackend translationBackend;
     public TranslationService(){
         super(MainActivity.class,
                 "translation_app",
@@ -56,9 +58,9 @@ public class TranslationService extends SmartGlassesAndroidService {
 
     public void initializeTranslationStuff(){
         EventBus.getDefault().register(this);
-        viewModel = new SimplifiedTranslateViewModel();
-        viewModel.sourceLang.setValue(new SimplifiedTranslateViewModel.Language("en"));
-        viewModel.targetLang.setValue(new SimplifiedTranslateViewModel.Language("es"));
+        translationBackend = new TranslationBackend();
+        translationBackend.sourceLang.setValue(new TranslationBackend.Language("en"));
+        translationBackend.targetLang.setValue(new TranslationBackend.Language("es"));
     }
 
     @Override
@@ -77,8 +79,8 @@ public class TranslationService extends SmartGlassesAndroidService {
     }
 
     public void translateText(String text){
-        viewModel.sourceText.setValue(text);
-        viewModel.translate();
+        translationBackend.sourceText.setValue(text);
+        translationBackend.translate();
     }
 
     @Subscribe
@@ -88,8 +90,27 @@ public class TranslationService extends SmartGlassesAndroidService {
 
         if(newScreen) {
             newScreen = false;
-            sgmLib.startScrollingText("Translate2");
+            String sourceCode = translationBackend.sourceLang.getValue().getCode();
+            String targetCode = translationBackend.targetLang.getValue().getCode();
+            sgmLib.startScrollingText("Translate: ");
         }
         sgmLib.pushScrollingText(event.message);
+    }
+
+    @Subscribe
+    public void onChangeSourceLang(ChangeSourceLanguageEvent event){
+        translationBackend.sourceLang.setValue(new TranslationBackend.Language(event.languageCode));
+    }
+    @Subscribe
+    public void onChangeTargetLang(ChangeTargetLanguageEvent event) {
+        translationBackend.targetLang.setValue(new TranslationBackend.Language(event.languageCode));
+    }
+
+    @Subscribe
+    public void displayDownloadingLanguage(NeedDownloadLanguageEvent event){
+        if(event.isComplete)
+            sgmLib.sendReferenceCard("Translation", "Language download complete!");
+        else
+            sgmLib.sendReferenceCard("Translation", "Download required language...");
     }
 }
