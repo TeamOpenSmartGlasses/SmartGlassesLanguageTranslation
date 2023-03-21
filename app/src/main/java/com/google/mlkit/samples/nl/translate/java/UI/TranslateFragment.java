@@ -39,6 +39,7 @@ import com.google.mlkit.samples.nl.translate.R;
 import com.google.mlkit.samples.nl.translate.java.Globals;
 import com.google.mlkit.samples.nl.translate.java.events.ChangeSourceLanguageEvent;
 import com.google.mlkit.samples.nl.translate.java.events.ChangeTargetLanguageEvent;
+import com.google.mlkit.samples.nl.translate.java.events.KillServiceEvent;
 import com.teamopensmartglasses.sgmlib.SGMLib;
 
 import org.greenrobot.eventbus.EventBus;
@@ -89,6 +90,7 @@ public class TranslateFragment extends Fragment {
     final TextView downloadedModelsTextView = view.findViewById(R.id.downloadedModels); //good
     final Spinner sourceLangSelector = view.findViewById(R.id.sourceLangSelector); //good
     final Spinner targetLangSelector = view.findViewById(R.id.targetLangSelector); //good
+    final Button killServiceButton = view.findViewById(R.id.killServiceButton);
 
     viewModel = ViewModelProviders.of(this).get(TranslateViewModel.class);
 
@@ -127,6 +129,14 @@ public class TranslateFragment extends Fragment {
           @Override
           public void onNothingSelected(AdapterView<?> parent) {}
         });
+
+      killServiceButton.setOnClickListener(
+              new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    EventBus.getDefault().post(new KillServiceEvent());
+                  }
+              });
 
     switchButton.setOnClickListener(
         new View.OnClickListener() {

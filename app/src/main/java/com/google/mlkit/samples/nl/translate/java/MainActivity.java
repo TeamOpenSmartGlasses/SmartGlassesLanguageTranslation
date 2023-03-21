@@ -31,6 +31,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.mlkit.samples.nl.translate.R;
 import com.google.mlkit.samples.nl.translate.java.UI.TranslateFragment;
+import com.google.mlkit.samples.nl.translate.java.events.KillServiceEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class MainActivity extends AppCompatActivity {
   private String TAG = "TranslateApp_MainActivity";
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_translate_main);
+    EventBus.getDefault().register(this);
 
     frag = TranslateFragment.newInstance();
     if (savedInstanceState == null) {
@@ -144,5 +149,11 @@ public class MainActivity extends AppCompatActivity {
     if (mService != null) {
       mService.sgmLib.sendReferenceCard("TPA Button Clicked", "Button was clicked. This is the content body of a card that was sent from a TPA using the SGMLib.");
     }
+  }
+
+  @Subscribe
+  public void killService(KillServiceEvent event) {
+    stopTranslationService();
+    //finish();
   }
 }
