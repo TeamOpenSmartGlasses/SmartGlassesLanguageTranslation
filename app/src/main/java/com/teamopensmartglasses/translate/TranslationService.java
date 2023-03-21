@@ -48,7 +48,7 @@ public class TranslationService extends SmartGlassesAndroidService {
         sgmLib.registerCommand(command, this::translateCommandCallback);
 
         //Subscribe to transcription stream
-        sgmLib.subscribe(DataStreamType.TRANSCRIPTION_STREAM, this::processTranscriptionCallback);
+        sgmLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);
 
         Log.d(TAG, "TRANSLATION SERVICE STARTED");
         sgmLib.sendReferenceCard("Success", "Translation Service started");
