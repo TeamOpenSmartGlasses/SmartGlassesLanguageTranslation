@@ -39,7 +39,6 @@ import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.teamopensmartglasses.translate.events.RequestTranslateMessageEvent;
 import com.teamopensmartglasses.translate.events.TranslateSuccessEvent;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 

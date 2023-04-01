@@ -28,7 +28,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.google.mlkit.samples.nl.translate.R;
 import com.teamopensmartglasses.translate.UI.TranslateFragment;
 import com.teamopensmartglasses.translate.events.KillServiceEvent;

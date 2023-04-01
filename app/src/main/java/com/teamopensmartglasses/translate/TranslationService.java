@@ -42,16 +42,13 @@ public class TranslationService extends SmartGlassesAndroidService {
 
         //Define command with a UUID
         UUID commandUUID = UUID.fromString("5b824bb6-d3b3-417d-8c74-3b103efb403f");
-        SGMCommand command = new SGMCommand("Translate", commandUUID, new String[]{"Translate"}, "A Translation App");
+        SGMCommand command = new SGMCommand("Translate", commandUUID, new String[]{"Translate"}, "Language translation app for smart glasses");
 
         //Register the command
         sgmLib.registerCommand(command, this::translateCommandCallback);
 
-        //Subscribe to transcription stream
-        sgmLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);
-
         Log.d(TAG, "TRANSLATION SERVICE STARTED");
-        sgmLib.sendReferenceCard("Success", "Translation Service started");
+        //sgmLib.sendReferenceCard("Success", "Translation Service started");
 
         initializeTranslationStuff();
     }
@@ -66,6 +63,7 @@ public class TranslationService extends SmartGlassesAndroidService {
     @Override
     public void onDestroy(){
         super.onDestroy();
+        sgmLib.deinit();
         EventBus.getDefault().unregister(this);
     }
 
@@ -75,7 +73,12 @@ public class TranslationService extends SmartGlassesAndroidService {
     }
     public void translateCommandCallback(String args, long commandTriggeredTime){
         Log.d("TAG","Translation callback called");
-        translateText("Translate this text!");
+
+        //StartScrollingText lets us aquire SGM's mode
+        sgmLib.startScrollingText("Translation: ");
+
+        //Subscribe to transcription stream
+        sgmLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);
     }
 
     public void translateText(String text){
@@ -85,14 +88,14 @@ public class TranslationService extends SmartGlassesAndroidService {
 
     @Subscribe
     public void onTranslateSuccess(TranslateSuccessEvent event){
-        Log.d(TAG, "Success! SUCCESS");
+
         if(sgmLib == null) return;
 
         if(newScreen) {
             newScreen = false;
-            String sourceCode = translationBackend.sourceLang.getValue().getCode();
-            String targetCode = translationBackend.targetLang.getValue().getCode();
-            sgmLib.startScrollingText("Translate: ");
+            //String sourceCode = translationBackend.sourceLang.getValue().getCode();
+            //String targetCode = translationBackend.targetLang.getValue().getCode();
+            //sgmLib.startScrollingText("Translation: ");
         }
         sgmLib.pushScrollingText(event.message);
     }
