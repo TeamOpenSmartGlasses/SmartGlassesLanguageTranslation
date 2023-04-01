@@ -2,7 +2,7 @@ package com.teamopensmartglasses.translate;
 
 import android.util.Log;
 
-import com.google.mlkit.samples.nl.translate.R;
+import com.teamopensmartglasses.translate.R;
 import com.teamopensmartglasses.translate.events.ChangeSourceLanguageEvent;
 import com.teamopensmartglasses.translate.events.ChangeTargetLanguageEvent;
 import com.teamopensmartglasses.translate.events.NeedDownloadLanguageEvent;

@@ -35,8 +35,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.mlkit.samples.nl.translate.R;
 import com.teamopensmartglasses.translate.Globals;
+import com.teamopensmartglasses.translate.R;
 import com.teamopensmartglasses.translate.events.ChangeSourceLanguageEvent;
 import com.teamopensmartglasses.translate.events.ChangeTargetLanguageEvent;
 import com.teamopensmartglasses.translate.events.KillServiceEvent;

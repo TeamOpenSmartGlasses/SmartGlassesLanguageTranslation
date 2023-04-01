@@ -37,7 +37,7 @@ import com.google.mlkit.nl.translate.TranslateRemoteModel;
 import com.google.mlkit.nl.translate.Translation;
 import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
-import com.google.mlkit.samples.nl.translate.R;
+import com.teamopensmartglasses.translate.R;
 import com.teamopensmartglasses.translate.events.RequestTranslateMessageEvent;
 import com.teamopensmartglasses.translate.events.TranslateSuccessEvent;
 
