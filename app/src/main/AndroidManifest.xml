@@ -21,7 +21,11 @@
         </intent-filter>
     </activity>
       <service android:name="com.teamopensmartglasses.translate.TranslationService"
-          android:exported="true"/>
+          android:exported="true">
+          <intent-filter>
+              <action android:name="SGM_COMMAND_INTENT" />
+          </intent-filter>
+      </service>
 
   </application>
 
