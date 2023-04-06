@@ -30,7 +30,7 @@ public class TranslationService extends SmartGlassesAndroidService {
                 "translation_app",
                 1001,
                 "Translation",
-                "Translation app for smartglasses", R.drawable.common_google_signin_btn_icon_light_normal);
+                "Translation app for smartglasses", R.drawable.ic_stat_name);
     }
 
     @Override
