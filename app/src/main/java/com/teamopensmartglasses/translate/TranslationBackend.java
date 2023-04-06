@@ -99,7 +99,7 @@ public class TranslationBackend {
               EventBus.getDefault().post(new TranslateSuccessEvent(task.getResult()));
             } else {
               translatedText.setValue(new ResultOrError(null, task.getException()));
-              task.getException().printStackTrace();
+//              task.getException().printStackTrace();
             }
             // Update the list of downloaded models as more may have been
             // automatically downloaded due to requested translation.

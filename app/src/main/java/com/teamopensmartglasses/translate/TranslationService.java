@@ -2,6 +2,7 @@ package com.teamopensmartglasses.translate;
 
 import android.util.Log;
 
+import com.teamopensmartglasses.sgmlib.FocusStates;
 import com.teamopensmartglasses.translate.R;
 import com.teamopensmartglasses.translate.events.ChangeSourceLanguageEvent;
 import com.teamopensmartglasses.translate.events.ChangeTargetLanguageEvent;
@@ -22,20 +23,21 @@ public class TranslationService extends SmartGlassesAndroidService {
 
     //our instance of the SGM library
     public SGMLib sgmLib;
-    public boolean newScreen = true;
-    public String previousTranslation = "";
+    public FocusStates focusState;
     TranslationBackend translationBackend;
     public TranslationService(){
         super(MainActivity.class,
                 "translation_app",
                 1001,
                 "Translation",
-                "Translation app for smartglasses", R.drawable.common_google_signin_btn_icon_light_normal);
+                "Translation app for smartglasses", R.drawable.ic_stat_name);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        focusState = FocusStates.OUT_FOCUS;
 
         //Create SGMLib instance with context: this
         sgmLib = new SGMLib(this);
@@ -69,16 +71,38 @@ public class TranslationService extends SmartGlassesAndroidService {
 
     public void processTranscriptionCallback(String transcript, long timestamp, boolean isFinal){
         Log.d(TAG, "PROCESS TRANSCRIPTION CALLBACK. IS IT FINAL? " + isFinal + " " + transcript);
-        if(isFinal) translateText(transcript);
+
+        //don't execute if we're not in focus
+        if (!focusState.equals(FocusStates.IN_FOCUS)){
+            return;
+        }
+
+        if(isFinal){
+            translateText(transcript);
+        }
     }
+
     public void translateCommandCallback(String args, long commandTriggeredTime){
         Log.d("TAG","Translation callback called");
 
-        //StartScrollingText lets us aquire SGM's mode
-        sgmLib.startScrollingText("Translation: ");
+        //request to be the in focus app so we can continue to show transcripts
+        sgmLib.requestFocus(this::focusChangedCallback);
+
+        //StartScrollingText to show our translation
+//        sgmLib.startScrollingText("Translation: ");
 
         //Subscribe to transcription stream
         sgmLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);
+    }
+
+    public void focusChangedCallback(FocusStates focusState){
+        Log.d(TAG, "Focus callback called with state: " + focusState);
+        this.focusState = focusState;
+
+        //StartScrollingText to show our translation
+        if (focusState.equals(FocusStates.IN_FOCUS)) {
+            sgmLib.startScrollingText("Translation: ");
+        }
     }
 
     public void translateText(String text){
@@ -88,15 +112,10 @@ public class TranslationService extends SmartGlassesAndroidService {
 
     @Subscribe
     public void onTranslateSuccess(TranslateSuccessEvent event){
-
-        if(sgmLib == null) return;
-
-        if(newScreen) {
-            newScreen = false;
-            //String sourceCode = translationBackend.sourceLang.getValue().getCode();
-            //String targetCode = translationBackend.targetLang.getValue().getCode();
-            //sgmLib.startScrollingText("Translation: ");
+        if (sgmLib == null){
+            return;
         }
+
         sgmLib.pushScrollingText(event.message);
     }
 
